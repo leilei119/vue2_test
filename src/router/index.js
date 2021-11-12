@@ -49,7 +49,7 @@ const router = new VueRouter({
             component:Home,
             meta:{
                 isAuth:false,//不参与权限
-                title:'首页'//网页标题
+                // title:'首页'//网页标题
             },
         },
         // 登录路由组件
@@ -190,8 +190,6 @@ router.afterEach((to)=>{
     //修改网页标题
     if(to.meta.title){
         document.title = to.meta.title 
-    }else{
-        document.title = '蕾baby'
     }
 })
 

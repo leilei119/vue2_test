@@ -3,7 +3,7 @@
     <div class="login_box animate__animated animate__zoomInDown">
       <!-- 头像区域 -->
       <div class="login_img">
-        <img src="../../assets/logo.jpg">
+        <img src="../../assets/images/logo.jpg">
       </div>
       <!-- 表单区 -->
       <el-form status-icon label-width="0px" class="forms" 

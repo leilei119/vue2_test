@@ -1,15 +1,51 @@
 module.exports = {
-    /*
-        vue.config.js配置文件
-        使用vue inspect > output.js可以查看Vue脚手架的默认配置
-        使用vue.config.js可以对脚手架进行个性化定制,详情见:https://cli.vuejs.org/zh
-    */
-    pages:{
-        index:{
-            // 入口
-            entry:'src/main.js',
-        },
-    },
+    // 为开发模式和发布模式指定不同的打包入口
+   chainWebpack:config=>{
+        // 发布模式
+        config.when(process.env.NODE_ENV === 'production',config=>{
+            // 发布模式入口文件
+            config.entry('app').clear().add('./src/prod_env.js')
+
+            // 发布模式加载cdn资源
+            config.set('externals',{
+                vue:'Vue',
+                'vue-router':'VueRouter',
+                axios:'axios',
+                nprogress:'NProgress',
+                vuex:'Vuex'
+            })
+
+            // 发布模式添加属性isProd 用于指定是发布模式
+            config.plugin('html').tap(args=>{
+                args[0].isProd = true
+                return args
+            })
+
+
+        })
+        // 开发环境入口文件
+        config.when(process.env.NODE_ENV === 'development',config=>{
+            // 开发模式入口文件
+            config.entry('app').clear().add('./src/dev_env.js')
+
+            // 开发模式添加属性isProd 用于指定是开发模式
+            config.plugin('html').tap(args=>{
+                args[0].isProd = false
+                return args
+            })
+        })
+        // 压缩图片
+        config.module.rule('images').test(/\.(png|jpe?g|gif)(\?.*)?$/).use('image-webpack-loader')
+        .loader('image-webpack-loader').options({
+            bypassOnDebug:true
+        }).end() 
+   },
+    // pages:{
+    //     index:{
+    //         // 入口
+    //         entry:'src/main.js',
+    //     }, 
+    // },
     lintOnSave:false,
     // 打包dist:配置不生成map文件。
     productionSourceMap: false

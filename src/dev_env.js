@@ -13,8 +13,44 @@ import { Divider,CarouselItem,Carousel,Button,Form,FormItem,Input,Message,
          DatePicker,Table,TableColumn,MessageBox,Radio,RadioGroup,Menu,MenuItem,Submenu,
          MenuItemGroup,Container,Main,Aside,Breadcrumb,BreadcrumbItem,Card,Row,Col,Tooltip,
          Pagination  } from 'element-ui'
+// 导入nprogress包的js css 进度条
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 // 导入axios  发送网络请求
 import axios from 'axios'
+
+// 配置请求的根路径
+axios.defaults.baseURL = 'http://webapi.tjchiyingkeji.com:1314/api/'
+
+// 配置请求头
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
+
+// request请求拦截器中展示进度条  NProgress.start()
+axios.interceptors.request.use(config=>{
+  // console.log('config',config);
+  // console.log(process.env.NODE_ENV);
+  NProgress.start()
+  // 请求时吧token加到headers的Authorization属性上
+  // config.headers.Authorization = window.sessionStorage.getItem('token')
+  // 在最后必须return config
+  return config
+})
+
+// response响应拦截器中隐藏进度条  NProgress.done()
+axios.interceptors.response.use(config=>{
+  // console.log('config',config);
+  NProgress.done()
+  // 在最后必须return config
+  return config
+})
+
+
+// 挂载到原型对象上,让所有组件都能访问到this.$http
+Vue.prototype.$axios=axios
+Vue.prototype.$mess=Message 
+Vue.prototype.$prompt=MessageBox
+
+Vue.config.productionTip = false
 
 
 Vue.component('el-button',Button)
@@ -43,19 +79,6 @@ Vue.component('el-row',Row)
 Vue.component('el-col',Col)
 Vue.component('el-tooltip',Tooltip)
 Vue.component('el-pagination',Pagination)
-
-
-// 配置请求的根路径
-axios.defaults.baseURL = 'http://webapi.tjchiyingkeji.com:1314/api/'
-// 配置请求头
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
-
-// 挂载到原型对象上,让所有组件都能访问到this.$http
-Vue.prototype.$axios=axios
-Vue.prototype.$mess=Message 
-Vue.prototype.$prompt=MessageBox
-
-Vue.config.productionTip = false
 
 
 

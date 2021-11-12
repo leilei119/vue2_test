@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <div class="header_logo">
       <div class="header_left">
-        <router-link to="/shouye"><img src="./assets/logo2.jpg" ></router-link>
+        <router-link to="/shouye"><img src="./assets/images/logo2.jpg" ></router-link>
         <!-- <span>蕾baby</span> -->
       </div>
       <!-- 头部导航 -->

@@ -196,7 +196,7 @@ border: none;
 }
 body{
     background-color: rgb(194, 129, 44);
-    background: url('../beijing.gif') no-repeat;
+    background: url('../images/beijing.gif') no-repeat;
     background-size: cover;
 }
 

@@ -159,7 +159,7 @@ export default {
     text-align: center;
   }
   .btns {
-    display: flex;
+    display: Flex;
     justify-content: end;
   }
   .riqi{

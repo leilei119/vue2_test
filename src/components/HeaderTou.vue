@@ -2,7 +2,7 @@
      <!-- 头部 -->
     <div class="header_logo">
       <div class="header_left">
-        <img src="../assets/logo2.jpg" >
+        <img src="../assets/images/logo2.jpg" >
       </div>
       <!-- 头部导航 -->
       <el-menu mode="horizontal" background-color="rgb(157 84 231)" text-color="#fff" active-text-color="#e58c2f"
